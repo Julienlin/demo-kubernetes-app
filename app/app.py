@@ -6,15 +6,20 @@ from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
-@app.route("/")
 def info():
     return f"server hostname: {socket.gethostname()} server ip: {request.host.split(':')[0]} client ip: {request.remote_addr}"
+
+
+@app.route("/")
+def tell_info():
+    return info()
 
 @app.route("/fortune")
 def tell_fortune():
     fortune = subprocess.run(["fortune"], stdout=subprocess.PIPE).stdout.decode('utf-8')
+    request_info = info()
 
-    return render_template('fortune.html', fortune=fortune)
+    return render_template('fortune.html',info=request_info, fortune=fortune)
 
 
 def main():
