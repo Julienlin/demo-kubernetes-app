@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fortune-teller
+spec:
+  containers:
+  - name: fortune-teller
+    image: dockdick/fortune-teller:v0
+    ports:
+    - containerPort: 8080
