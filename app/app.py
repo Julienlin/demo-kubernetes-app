@@ -25,10 +25,8 @@ def tell_fortune():
 
 
 @app.route("/fortune/cowsay")
-def tell_fortune():
-    fortune = subprocess.run(
-        ["fortune", "|", "cowsay"], stdout=subprocess.PIPE
-    ).stdout.decode("utf-8")
+def cow_tell_fortune():
+    fortune = subprocess.getoutput("fortune | cowsay")
     request_info = info()
 
     return render_template("fortune.html", info=request_info, fortune=fortune)
