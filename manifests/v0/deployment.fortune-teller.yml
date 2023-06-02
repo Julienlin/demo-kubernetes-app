@@ -13,12 +13,12 @@ spec:
     spec:
       containers:
         - name: fortune-teller
-          image: dockdick/fortune-teller:v1
+          image: dockdick/fortune-teller:v0
           imagePullPolicy: Always
           resources:
             limits:
               memory: "128Mi"
-              cpu: "256m"
+              cpu: "100m"
           env:
             - name: POD_IP
               valueFrom:
@@ -27,11 +27,16 @@ spec:
           ports:
             - containerPort: 8080
           # Added in v1
-          livenessProbe:
-            initialDelaySeconds: 10
-            httpGet:
-              path: /actuator/health
-              port: 8080
+          # livenessProbe:
+          #   initialDelaySeconds: 1
+          #   httpGet:
+          #     path: /actuator/health
+          #     port: 8080
+          # readinessProbe:
+          #   initialDelaySeconds: 1
+          #   httpGet:
+          #     path: /actuator/health
+          #     port: 8080
   # replicas: 2
   # strategy: 
   #   rollingUpdate:
