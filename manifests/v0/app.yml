@@ -4,7 +4,16 @@ metadata:
   name: fortune-teller
 spec:
   containers:
-  - name: fortune-teller
-    image: dockdick/fortune-teller:v0
-    ports:
-    - containerPort: 8080
+    - name: fortune-teller
+      image: dockdick/fortune-teller:v0
+      resources:
+        limits:
+          cpu: "0.5"
+          memory: 256m
+      env:
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+      ports:
+        - containerPort: 8080
