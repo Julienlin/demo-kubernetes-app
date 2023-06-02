@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: fortune-teller
+  labels:
+    app: fortune-teller
 spec:
   containers:
     - name: fortune-teller
@@ -9,7 +11,7 @@ spec:
       resources:
         limits:
           cpu: "0.5"
-          memory: 256m
+          memory: 256M
       env:
         - name: POD_IP
           valueFrom:
